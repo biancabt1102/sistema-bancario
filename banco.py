@@ -27,7 +27,7 @@ while True:
 
         if deposito > 0:
             saldo += deposito
-            extrato = f"Depósito: R$ {deposito:.2f}\n"
+            extrato += f"Depósito: R$ {deposito:.2f}\n"
             print("Valor adicionado ao saldo!")
 
     elif opcao == "s":
@@ -42,14 +42,17 @@ while True:
             print("Operação inválida! Números de saques excedido!")
         elif saque > 0:
             saldo -= saque
-            extrato = f"Saque: R$ {saque:.2f}\n"
+            extrato += f"Saque: R$ {saque:.2f}\n"
             numero_saques += 1
             print("Saque realizado com sucesso!")
         else:
             print("Operação falhou! O valor informado é inválido")
 
     elif opcao == "e":
-        print("Visualizar Extrato...")
+        print("------------- EXTRATO -------------")
+        print("Não foram realizadas movimentações" if not extrato else extrato)
+        print(f"Saldo atual: {saldo:.2f}")
+
     elif opcao == "q":
         break
     else:
