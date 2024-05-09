@@ -14,11 +14,6 @@ LIMITE_SAQUE = 3
 extrato = ""
 numero_saques = 0
 
-def valor_invalido(valor):
-    if valor < 0:
-        print("Digite um valor válido!")
-        return True
-
 
 while True:
     opcao = input(menu)
@@ -26,20 +21,18 @@ while True:
     if opcao == "d":
         print("Depositar...")
 
-        valor = float(input("Digite o valor que deseja depositar: "))
-        while valor_invalido(valor):
-            valor = float(input("Digite o valor que deseja depositar: "))
-            if valor > 0:
-                saldo += valor
-                extrato = f"Depósito: R$ {valor:.2f}\n"
-                print("Valor adicionado ao saldo!")
+        deposito = float(input("Digite o valor que deseja depositar: "))
+        while deposito < 0:
+            deposito = float(input("Digite o valor que deseja depositar: "))
+
+        if deposito > 0:
+            saldo += deposito
+            extrato = f"Depósito: R$ {deposito:.2f}\n"
+            print("Valor adicionado ao saldo!")
 
     elif opcao == "s":
         print("Sacar...")
         saque = float(input("Digite o valor que deseja sacar: "))
-        excedeu_saldo = saque > saldo
-        excedeu_limite = saque > limite
-        excedeu_saques = numero_saques >= LIMITE_SAQUE
 
         if saque > saldo:
             print("Operação inválida! Saldo insuficiente!")
